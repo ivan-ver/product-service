@@ -23,8 +23,12 @@ public class ProductService {
                 .description(productRequestDto.getDescription())
                 .price(productRequestDto.getPrice())
                 .build();
-        productRepository.save(product);
-        log.info("Product {} is saved", product);
+        try {
+            productRepository.save(product);
+            log.info("Product {} is saved", product);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public List<ProductResponseDto> getAll() {
